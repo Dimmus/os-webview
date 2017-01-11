@@ -15,6 +15,7 @@ class StickyNote extends CMSPageController {
         this.model = {};
     }
 
+    /* eslint complexity: 0 */
     onDataLoaded() {
         const isExpired = (str) => new Date(str) < Date.now();
 
@@ -31,6 +32,7 @@ class StickyNote extends CMSPageController {
                     localStorage.removeItem('visitedGive');
                 }
             } else {
+                /* eslint no-lonely-if: 0 */
                 if (process.env.NODE_ENV === 'production') {
                     this.expired = Number(localStorage.visitedGive || 0) > 5;
                 } else {

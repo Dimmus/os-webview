@@ -15,11 +15,13 @@ class CMSPageController extends Controller {
             (async () => {
                 try {
                     let data;
-                    if (process.env['NODE_ENV'] !== 'production') {
-                      data = {};
+
+                    if (process.env.NODE_ENV !== 'production') {
+                        data = {};
                     } else {
-                      const response = await fetch(`${settings.apiOrigin}/api/${this.slug}`);
-                      data = await response.json();
+                        const response = await fetch(`${settings.apiOrigin}/api/${this.slug}`);
+
+                        data = await response.json();
                     }
 
                     this.pageData = this.preserveWrapping ? data : CMSPageController[TRANSFORM_DATA](data);

@@ -21,12 +21,11 @@ class UserModel {
 
         // if (process.env['NODE_ENV'] !== 'production') { } TODO: Use this format instead of this other hack below
         if (typeof fetch !== 'undefined') {
-          this[LOADED] = fetch(url, {credentials: 'include'}).then((response) => response.json());
-          return this[LOADED];
-        } else {
-          this[LOADED] = Promise.resolve({USERNAME: 'fetch is undefined so this is a no-op', groups: []});
-          return this[LOADED];
+            this[LOADED] = fetch(url, {credentials: 'include'}).then((response) => response.json());
+            return this[LOADED];
         }
+        this[LOADED] = Promise.resolve({USERNAME: 'fetch is undefined so this is a no-op', groups: []});
+        return this[LOADED];
     }
 
 }
