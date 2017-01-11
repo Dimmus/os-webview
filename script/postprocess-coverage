@@ -2,11 +2,11 @@
 
 'use strict'
 
-// Open .nyc_output/*.json and adjust the path in each JSON file because nyc
-// does not seem to be able to find the source file otherwise.
+// NOTE: There is probably a cleaner way to preserve the sourcemaps for coverage.
+// All this does is replace `.../dev/...` with `.../src/ANYTHING_GOES_HERE`
+// in the `.nyc_output/*.json` files.
 //
-// Apparently setting the path to be `src/ANYTHING_GOES_HERE` is sufficient for
-// the source maps to be loaded when generating the coverage report
+// It seems `nyc` is not able to find the source file otherwise.
 
 const fs = require('fs')
 const path = require('path')
@@ -23,8 +23,23 @@ files.forEach(function(filename) {
   const contents = JSON.parse(fs.readFileSync(jsonPath, 'utf8'))
   Object.keys(contents).forEach((key) => {
     const val = contents[key]
-    val.path = NEW_PATH
+
+    // Just for debugging and so you can run `npm run test:only` multiple times
+    const origPath = val._origPath || val.path
+    val._origPath = origPath
+
+    // rewrite (and concat for some reason) `dev/**` to `src/`
+    if (val.path.startsWith(path.join(__dirname, '..', 'dev'))) {
+      // if (val.path.endsWith('.html.js')) {
+      //   // these incrementalDOM templates should have sourcemaps but I do not know how to load them
+      // } else {
+      delete val.path // just so origPath and path show up next to each other
+      val.path = NEW_PATH
+      // }
+    } else {
+      // leave the path alone
+    }
   })
   // Write the JSON back out
-  fs.writeFileSync(jsonPath, JSON.stringify(contents))
+  fs.writeFileSync(jsonPath, JSON.stringify(contents, null, 2))
 })

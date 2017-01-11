@@ -13,7 +13,7 @@ class CMSPageController extends Controller {
         if (this.slug) {
             /* eslint arrow-parens: 0 */ // Fix eslint bug with async arrow functions
             (async () => {
-                // try {
+                try {
                     let data;
                     if (process.env['NODE_ENV'] !== 'production') {
                       data = {};
@@ -27,9 +27,9 @@ class CMSPageController extends Controller {
                     await this[LOAD_IMAGES](this.pageData);
 
                     this.onDataLoaded();
-                // } catch (e) {
-                //     this.onDataError();
-                // }
+                } catch (e) {
+                    this.onDataError();
+                }
             })();
         }
     }
