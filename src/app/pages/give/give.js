@@ -3,7 +3,7 @@ import {on} from '~/helpers/controller/decorators';
 import router from '~/router';
 import selectHandler from '~/handlers/select';
 import $ from '~/helpers/$';
-import settings from 'settings';
+import settings from '~/../settings';
 import FbShare from './fbshare';
 import {description as template} from './give.html';
 

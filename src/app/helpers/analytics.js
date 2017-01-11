@@ -1,4 +1,5 @@
-import settings from 'settings';
+import regeneratorRuntime from 'regenerator-runtime/runtime';
+import settings from '~/../settings';
 import linkHelper from '~/helpers/link';
 
 const RELATIVE_TO_ROOT = /^\//;

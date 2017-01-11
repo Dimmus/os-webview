@@ -1,4 +1,5 @@
-import settings from 'settings';
+import settings from '~/../settings';
+// import fetch from '../helpers/fetch';
 
 export const userUrl = `${settings.apiOrigin}/api/user`;
 const sfUserUrl = `${settings.apiOrigin}/api/user_salesforce`;
@@ -18,8 +19,14 @@ class UserModel {
         .join('&');
         const url = this.url + (query.length ? `?${query}` : '');
 
-        this[LOADED] = fetch(url, {credentials: 'include'}).then((response) => response.json());
-        return this[LOADED];
+        // if (process.env['NODE_ENV'] !== 'production') { } TODO: Use this format instead of this other hack below
+        if (typeof fetch !== 'undefined') {
+          this[LOADED] = fetch(url, {credentials: 'include'}).then((response) => response.json());
+          return this[LOADED];
+        } else {
+          this[LOADED] = Promise.resolve({USERNAME: 'fetch is undefined so this is a no-op', groups: []});
+          return this[LOADED];
+        }
     }
 
 }

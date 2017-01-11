@@ -1,4 +1,5 @@
-import settings from 'settings';
+import regeneratorRuntime from 'regenerator-runtime/runtime';
+import settings from '~/../settings';
 import {Controller} from 'superb';
 
 const TRANSFORM_DATA = Symbol();
@@ -12,18 +13,23 @@ class CMSPageController extends Controller {
         if (this.slug) {
             /* eslint arrow-parens: 0 */ // Fix eslint bug with async arrow functions
             (async () => {
-                try {
-                    const response = await fetch(`${settings.apiOrigin}/api/${this.slug}`);
-                    const data = await response.json();
+                // try {
+                    let data;
+                    if (process.env['NODE_ENV'] !== 'production') {
+                      data = {};
+                    } else {
+                      const response = await fetch(`${settings.apiOrigin}/api/${this.slug}`);
+                      data = await response.json();
+                    }
 
                     this.pageData = this.preserveWrapping ? data : CMSPageController[TRANSFORM_DATA](data);
 
                     await this[LOAD_IMAGES](this.pageData);
 
                     this.onDataLoaded();
-                } catch (e) {
-                    this.onDataError();
-                }
+                // } catch (e) {
+                //     this.onDataError();
+                // }
             })();
         }
     }

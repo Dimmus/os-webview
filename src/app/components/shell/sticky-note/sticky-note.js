@@ -27,9 +27,15 @@ class StickyNote extends CMSPageController {
         } else {
             if (isExpired(this.pageData.expires)) {
                 this.forceHide(true);
-                localStorage.removeItem('visitedGive');
+                if (process.env.NODE_ENV === 'production') {
+                    localStorage.removeItem('visitedGive');
+                }
             } else {
-                this.expired = Number(localStorage.visitedGive || 0) > 5;
+                if (process.env.NODE_ENV === 'production') {
+                    this.expired = Number(localStorage.visitedGive || 0) > 5;
+                } else {
+                    this.expired = false;
+                }
             }
             this.model.content = this.expired ? null : this.pageData.content;
         }

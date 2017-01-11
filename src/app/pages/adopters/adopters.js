@@ -1,4 +1,4 @@
-import settings from 'settings';
+import settings from '~/../settings';
 import CMSPageController from '~/controllers/cms';import {description as template} from './adopters.html';
 
 export default class Adopters extends CMSPageController {

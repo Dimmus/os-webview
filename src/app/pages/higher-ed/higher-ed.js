@@ -1,4 +1,4 @@
-import settings from 'settings';
+import settings from '~/../settings';
 import CMSPageController from '~/controllers/cms';
 import {description as template} from './higher-ed.html';
 import ProductsBoxes from '~/components/products-boxes/products-boxes';

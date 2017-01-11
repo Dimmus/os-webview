@@ -1,5 +1,6 @@
+import regeneratorRuntime from 'regenerator-runtime/runtime';
 import {Controller} from 'superb';
-import settings from 'settings';
+import settings from '~/../settings';
 import {description as template} from './footer.html';
 
 class Footer extends Controller {

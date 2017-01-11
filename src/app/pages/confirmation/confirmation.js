@@ -1,5 +1,5 @@
 import {Controller} from 'superb';
-import settings from 'settings';
+import settings from '~/../settings';
 import Popup from '~/components/popup/popup';
 import Calculator from '~/components/calculator/calculator';
 import {description as template} from './confirmation.html';

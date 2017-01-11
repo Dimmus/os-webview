@@ -1,4 +1,4 @@
-import settings from 'settings';
+import settings from '~/../settings';
 import router from '~/router';
 import CMSPageController from '~/controllers/cms';
 import $ from '~/helpers/$';

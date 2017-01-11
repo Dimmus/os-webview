@@ -1,4 +1,4 @@
-import settings from 'settings';
+import settings from '~/../settings';
 import {Controller} from 'superb';
 import $ from '~/helpers/$';
 import {on} from '~/helpers/controller/decorators';

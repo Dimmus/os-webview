@@ -40,6 +40,7 @@ SystemJS.config({
   map: {
     "assert": "github:jspm/nodelibs-assert@0.2.0-alpha",
     "babel-polyfill": "npm:babel-polyfill@6.20.0",
+    "regenerator-runtime": "npm:regenerator-runtime@0.10.1",
     "bcrypt-pbkdf": "npm:bcrypt-pbkdf@1.0.0",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
     "child_process": "github:jspm/nodelibs-child_process@0.2.0-alpha",

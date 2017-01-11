@@ -2,7 +2,7 @@ import {Controller} from 'superb';
 import stickyNote from '../sticky-note/sticky-note';
 import UpperMenu from './upper-menu/upper-menu';
 import MainMenu from './main-menu/main-menu';
-import settings from 'settings';
+import settings from '~/../settings';
 import {on} from '~/helpers/controller/decorators';
 import linkHelper from '~/helpers/link';
 import userModel, {sfUserModel} from '~/models/usermodel';

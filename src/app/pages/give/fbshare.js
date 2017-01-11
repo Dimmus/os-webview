@@ -1,5 +1,5 @@
 import {Controller} from 'superb';
-import settings from 'settings';
+import settings from '~/../settings';
 import {description as template} from './fbshare.html';
 
 export default class FbShare extends Controller {

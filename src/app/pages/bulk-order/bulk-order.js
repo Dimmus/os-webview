@@ -1,7 +1,7 @@
 import {Controller} from 'superb';
 import CMSPageController from '~/controllers/cms';
 import {on} from '~/helpers/controller/decorators';
-import settings from 'settings';
+import settings from '~/../settings';
 import selectHandler from '~/handlers/select';
 import {highSchoolSlugs} from '~/models/book-titles';
 import {description as template} from './bulk-order.html';
